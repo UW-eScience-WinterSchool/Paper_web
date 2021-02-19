@@ -27,7 +27,6 @@ ____
 
 Reading the data:
 
-
 ```{r}
 # the location
 linkR='https://github.com/UW-eScience-WinterSchool/Python_Session/raw/main/demohdimil.RDS'
@@ -49,14 +48,6 @@ Using **summary tools** for categorical data:
 ```{r}
 # optional
 #remotes::install_github('rapporter/pander')
-```
-
-
-```{r}
-library("papeR")
-
-summarize(fromPy)
-
 ```
 
 ```{r, results='asis'}
