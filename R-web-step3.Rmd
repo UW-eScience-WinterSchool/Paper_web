@@ -30,7 +30,7 @@ Reading the data:
 
 ```{r}
 # the location
-linkR='https://github.com/UW-eScience-WinterSchool/Python_Session/raw/main/demohdimil.RDS'
+linkR='https://github.com/UW-eScience-WinterSchool/R_Session/raw/main/allmerged_new.rds'
 # if location is website:
 MyFile=url(linkR)
 # get the data:
@@ -44,38 +44,12 @@ Simple table for categorical data:
 ```{r}
 table(fromPy$Regime_type)
 ```
-Using **summary tools** for categorical data:
 
-```{r}
-# optional
-#remotes::install_github('rapporter/pander')
-```
+Simple summary for numerical data:
 
-
-```{r}
-library("papeR")
-
-summarize(fromPy)
-
-```
-
-```{r, results='asis'}
-library(summarytools)
-freq(fromPy$Regime_type, 
-     style = "rmarkdown",
-     report.nas = FALSE,
-     cumul = FALSE)
-```
-
-Simple table for numerical table:
 
 ```{r}
 summary(fromPy)
-```
-Using *summarytools*:
-
-```{r, results='asis'}
-descr(fromPy,stats = c("mean", "sd",'med'), transpose = TRUE, headings = TRUE)
 ```
 
 

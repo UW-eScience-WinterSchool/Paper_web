@@ -23,13 +23,13 @@ ____
 
 <a id='table'></a>
 
-## A table
+# A table
 
 Reading the data:
 
-```{r, echo=FALSE}
+```{r}
 # the location
-linkR='https://github.com/UW-eScience-WinterSchool/Python_Session/raw/main/demohdimil.RDS'
+linkR='https://github.com/UW-eScience-WinterSchool/R_Session/raw/main/allmerged_new.rds'
 # if location is website:
 MyFile=url(linkR)
 # get the data:
@@ -39,45 +39,29 @@ row.names(fromPy)=NULL   # reset indexes from Python.
 
 ```
 
-Simple table for categorical data:
-```{r, echo=FALSE}
-table(fromPy$Regime_type)
-```
-Using **summary tools** for categorical data:
+Better table for categorical data:
 
-```{r, echo=FALSE}
-# optional
-#remotes::install_github('rapporter/pander')
-```
-
-```{r, results='asis', echo=FALSE}
+```{r, results='asis'}
 library(summarytools)
-freq(fromPy$Regime_type, headings = F,
+freq(fromPy$Regime_type, 
      style = "rmarkdown",
      report.nas = FALSE,
      cumul = FALSE)
 ```
 
-Simple table for numerical table:
+Better table for numerical table:
 
-```{r, echo=FALSE}
-summary(fromPy)
+```{r, results='asis'}
+descr(fromPy,stats = c("mean", "sd",'med'), transpose = TRUE, headings = TRUE)
 ```
-Using *summarytools*:
 
-```{r, results='asis', echo=FALSE}
-descr(fromPy,
-      stats = c("mean", "sd",'med','q1','min'),
-      transpose = TRUE, 
-      headings = F)
-```
 
 For regressions:
 
-```{r, echo=FALSE}
+```{r}
 # hypotheses
-hypothesis1=formula(HDI~DemoIndex)
-hypothesis2=formula(HDI~DemoIndex + mil_expend)
+hypothesis1=formula(HDIndex~DemoIndex)
+hypothesis2=formula(HDIndex~DemoIndex + DefenseIndex)
 
 # running model
 
@@ -85,36 +69,25 @@ regre1=lm(hypothesis1,data=fromPy)
 regre2=lm(hypothesis2,data=fromPy)
 ```
 
-Classic tables:
 
-```{r,  echo=FALSE}
-summary(regre1)
-```
+Better looking tables with **stargazer**:
 
-```{r,  echo=FALSE}
-summary(regre2)
-```
-
-Better looking tables:
-
-```{r, results='asis', echo=FALSE}
+```{r, results='asis',echo=FALSE}
 library(stargazer)
 stargazer(regre1,type='html')
 ```
 
-<div align="center">
+This one centered:
 
-<style type="text/css">
-td{padding:0 15px 0 15px;}
-</style>
+<div align="center">
 
 ```{r, results='asis',echo=FALSE}
 library(stargazer)
 stargazer(regre1,regre2,type='html',
           digits = 2)
 ```
-
  </div> 
+
 [home](#home)
 
 
@@ -122,17 +95,17 @@ ____
 
 <a id='plot'></a>
 
-## A plot
+# A plot
 
 Showing plots is easy:
 
-```{r,  echo=FALSE}
+```{r}
 library(ggplot2)
 
 base=ggplot(data=fromPy) + theme_classic()
 
 plot1=base + geom_boxplot(aes(x=Regime_type,
-                              y=mil_expend))
+                              y=DefenseIndex))
 plot1 + labs(title = "Arms to keep authoritarianism?",
              subtitle = "Year 2019",
              x="Democracy level",
@@ -142,18 +115,23 @@ plot1 + labs(title = "Arms to keep authoritarianism?",
 ```
 
 
+[home](#home)
 
 ```{r,  echo=FALSE}
+
 devtools::install_github("crsh/citr")
 ```
+
+
+
 
 Finally, get a zotero account and download the app. In your local zotero create a folder (collection) biblio_example. Add this (paper)[https://science.sciencemag.org/content/103/2684/677].
 
 Download the folder in the folder you are saving this notebook. You will see  file **biblio_example.bib**. Add this to the YAML header:
 
 
-
 Restart RStudio. 
+
 
 After this words insert a citation in parenthesis [@stevens_theory_1946-4]    or without them  @stevens_theory_1946-4 .
 
