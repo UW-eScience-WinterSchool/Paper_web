@@ -72,7 +72,7 @@ regre2=lm(hypothesis2,data=fromPy)
 
 Better looking tables with **stargazer**:
 
-```{r, results='asis',echo=FALSE}
+```{r, results='asis',echo=FALSE, message=FALSE}
 library(stargazer)
 stargazer(regre1,type='html')
 ```

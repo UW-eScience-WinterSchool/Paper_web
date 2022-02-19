@@ -1,8 +1,9 @@
 <br> 
 <center><img src="covid.jpg" width="500"></center>
 
-<center><h1> A post using R </h1></center>
+<center><h1> title </h1></center>
 
+# title
 
 <div align="right">Authored by JOSE MANUEL MAGALLANES </div>
 
